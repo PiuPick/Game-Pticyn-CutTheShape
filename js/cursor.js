@@ -3,7 +3,7 @@ function initCustomCursor() {
     if (!cursor) {
         cursor = document.createElement('div');
         cursor.id = 'cursor';
-        cursor.innerHTML = '<img src="svg/saw.svg">';
+        cursor.innerHTML = '<img src="/svg/saw.svg">';
         document.body.appendChild(cursor);
     }
 
