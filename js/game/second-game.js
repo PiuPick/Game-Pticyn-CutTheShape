@@ -1,7 +1,7 @@
 function startSecondGame() {
     let shapes = nextTask();
 
-    addTemplateTag('saw', 'div', '<img src="../svg/saw.svg">');
+    addTemplateTag('saw', 'div', '<img src="/svg/saw.svg">');
 
     getTask().innerHTML = `Перетащите фигуру 
     <span style="color:${correct_shape_color}; font-weight:bold;">${correct_shape_type}</span> цвета 
