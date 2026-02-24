@@ -1,0 +1,23 @@
+#saw {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 100;
+}
+
+#saw img {
+    width: 200px;
+    height: 200px;
+    animation: saw-rotate 1s linear infinite;
+    transform-origin: center center;
+}
+
+@keyframes saw-rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

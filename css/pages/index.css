@@ -1,0 +1,13 @@
+input {
+    width: 220px;
+    padding: 10px;
+    font-size: 20px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+input:focus {
+    outline: 3px solid rgba(255, 215, 0, 0.25);
+    outline-offset: 2px;
+}

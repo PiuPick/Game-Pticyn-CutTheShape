@@ -1,0 +1,92 @@
+.shape {
+    position: absolute;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.7));
+    animation: appear 0.5s ease-out;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    transform: rotate(var(--rotation));
+}
+
+@keyframes appear {
+    0% {
+        transform: scale(0) rotate(0deg);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1) rotate(calc(var(--rotation) + 360deg));
+        opacity: 1;
+    }
+}
+
+.shape:hover {
+    animation: shake 0.2s ease-in-out infinite;
+    filter: drop-shadow(0 0 15px yellow);
+    z-index: 10;
+}
+
+@keyframes shake {
+    0% {
+        translate: 0;
+    }
+    100% {
+        translate: 3px;
+    }
+}
+
+.circle {
+    border-radius: 50%;
+    width: var(--size);
+    height: var(--size);
+    background-color: var(--color);
+}
+
+.triangle {
+    border-right: calc(var(--size) / 2) solid transparent;
+    border-left: calc(var(--size) / 2) solid transparent;
+    border-bottom: var(--size) solid var(--color);
+}
+
+.square {
+    width: var(--size);
+    height: var(--size);
+    background-color: var(--color);
+}
+
+.pentagon {
+    width: var(--size);
+    border-top: calc(var(--size) / 2) solid var(--color);
+    border-left: calc(var(--size) / 4) solid transparent;
+    border-right: calc(var(--size) / 4) solid transparent;
+}
+
+.pentagon::before {
+    content: '';
+    position: absolute;
+    height: 0;
+    width: 0;
+    border-bottom: calc(var(--size) / 2) solid var(--color);
+    border-left: calc(var(--size) / 2) solid transparent;
+    border-right: calc(var(--size) / 2) solid transparent;
+    bottom: calc(var(--size) / 2 - 1px);
+    left: calc(0px - var(--size) / 4);
+}
+
+.hexagon {
+    height: 0;
+    width: var(--size);
+    border-top: calc(var(--size) * 3 / 7) solid var(--color);
+    border-left: calc(var(--size) * 2 / 7) solid transparent;
+    border-right: calc(var(--size) * 2 / 7) solid transparent;
+}
+
+.hexagon::before {
+    content: '';
+    position: absolute;
+    height: 0;
+    width: calc(var(--size) * 3 / 7);
+    border-bottom: calc(var(--size) * 3 / 7) solid var(--color);
+    border-left: calc(var(--size) * 2 / 7) solid transparent;
+    border-right: calc(var(--size) * 2 / 7) solid transparent;
+    bottom: calc(var(--size) * 3 / 7 - 1px);
+    left: calc(0px - var(--size) * 2 / 7);
+}
+

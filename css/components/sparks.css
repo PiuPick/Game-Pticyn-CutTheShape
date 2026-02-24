@@ -1,0 +1,21 @@
+.spark {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: gold;
+    pointer-events: none;
+    animation: spark-move 0.5s forwards;
+    z-index: 1000;
+}
+
+@keyframes spark-move {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--dx), var(--dy)) scale(0.5);
+    }
+}
