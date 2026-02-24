@@ -38,7 +38,7 @@ function isOverlapping(x, y, size) {
     for (const shape of existingShapes) {
         const dx = x - shape.left;
         const dy = y - shape.top;
-        if (Math.abs(dx) < (size + shape.size) / 2 && Math.abs(dy) < (size + shape.size) / 2) {
+        if (Math.abs(dx) < size + shape.size && Math.abs(dy) < size + shape.size) {
             return true;
         }
     }
