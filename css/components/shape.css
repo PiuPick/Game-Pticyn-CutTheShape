@@ -2,91 +2,62 @@
     position: absolute;
     filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.7));
     animation: appear 0.5s ease-out;
-    transition: transform 0.3s ease, filter 0.3s ease;
-    transform: rotate(var(--rotation));
+    cursor: crosshair;
+    user-select: none;
+}
+
+.shape svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* клики обрабатывает родительский div */
 }
 
 @keyframes appear {
-    0% {
-        transform: scale(0) rotate(0deg);
-        opacity: 0;
-    }
-    100% {
-        transform: scale(1) rotate(calc(var(--rotation) + 360deg));
-        opacity: 1;
-    }
+    0%   { opacity: 0; transform: scale(0) rotate(0deg); }
+    100% { opacity: 1; transform: scale(1); }
 }
 
 .shape:hover {
-    animation: shake 0.2s ease-in-out infinite;
-    filter: drop-shadow(0 0 15px yellow);
+    filter: drop-shadow(0 0 16px gold);
     z-index: 10;
 }
 
+/* Анимация тряски при наведении (уровень 1 и 3) */
+.shape.shake {
+    animation: shake 0.25s ease-in-out infinite;
+}
+
 @keyframes shake {
-    0% {
-        translate: 0;
-    }
-    100% {
-        translate: 3px;
-    }
+    0%, 100% { translate: 0; }
+    25%       { translate: -4px 0; }
+    75%       { translate:  4px 0; }
 }
 
-.circle {
-    border-radius: 50%;
-    width: var(--size);
-    height: var(--size);
-    background-color: var(--color);
+/* Эффект разрезания — фигура делится на 2 половины */
+.shape.cut-top {
+    animation: cut-top 0.5s forwards;
+    pointer-events: none;
+}
+.shape.cut-bottom {
+    animation: cut-bottom 0.5s forwards;
+    pointer-events: none;
 }
 
-.triangle {
-    border-right: calc(var(--size) / 2) solid transparent;
-    border-left: calc(var(--size) / 2) solid transparent;
-    border-bottom: var(--size) solid var(--color);
+@keyframes cut-top {
+    0%   { transform: translateY(0)   rotate(0); opacity: 1; }
+    100% { transform: translateY(-80px) rotate(-15deg); opacity: 0; }
+}
+@keyframes cut-bottom {
+    0%   { transform: translateY(0)   rotate(0); opacity: 1; }
+    100% { transform: translateY(80px)  rotate(15deg);  opacity: 0; }
 }
 
-.square {
-    width: var(--size);
-    height: var(--size);
-    background-color: var(--color);
-}
-
-.pentagon {
-    width: var(--size);
-    border-top: calc(var(--size) / 2) solid var(--color);
-    border-left: calc(var(--size) / 4) solid transparent;
-    border-right: calc(var(--size) / 4) solid transparent;
-}
-
-.pentagon::before {
-    content: '';
+/* Линия разреза (canvas поверх доски) */
+#cut-canvas {
     position: absolute;
-    height: 0;
-    width: 0;
-    border-bottom: calc(var(--size) / 2) solid var(--color);
-    border-left: calc(var(--size) / 2) solid transparent;
-    border-right: calc(var(--size) / 2) solid transparent;
-    bottom: calc(var(--size) / 2 - 1px);
-    left: calc(0px - var(--size) / 4);
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 50;
 }
-
-.hexagon {
-    height: 0;
-    width: var(--size);
-    border-top: calc(var(--size) * 3 / 7) solid var(--color);
-    border-left: calc(var(--size) * 2 / 7) solid transparent;
-    border-right: calc(var(--size) * 2 / 7) solid transparent;
-}
-
-.hexagon::before {
-    content: '';
-    position: absolute;
-    height: 0;
-    width: calc(var(--size) * 3 / 7);
-    border-bottom: calc(var(--size) * 3 / 7) solid var(--color);
-    border-left: calc(var(--size) * 2 / 7) solid transparent;
-    border-right: calc(var(--size) * 2 / 7) solid transparent;
-    bottom: calc(var(--size) * 3 / 7 - 1px);
-    left: calc(0px - var(--size) * 2 / 7);
-}
-
